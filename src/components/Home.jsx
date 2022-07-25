@@ -1,5 +1,7 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material/';
+import HeroBanner from '../assets/images/banner.png';
+import './Home.css';
 
 const Home = () => (
   <Box
@@ -14,17 +16,21 @@ const Home = () => (
     <Typography fontSize="1.5rem" fontWeight="600" color="#ff2625">
       Fitness Exercise app
     </Typography>
-    <Typography variant="h2" fontSize="4rem" fontWeight="700" lineHeight="5rem" marginBlock="1rem">
+    <Typography variant="h2" fontSize="4rem" fontWeight="700" lineHeight="5rem" marginBlock="0.3rem">
       Sweat Smile
       <br />
       and Repeat
     </Typography>
-    <Typography sx={{ lg: { lineHeight: '3rem' } }} letterSpacing="0.25rem" fontSize="1.5rem" lineHeight="3rem" marginTop="1.75rem" marginBottom="3.5rem">
+    <Typography sx={{ lg: { lineHeight: '3rem' }, xm: { display: 'hide' } }} letterSpacing="0.25rem" fontSize="1.5rem" lineHeight="3rem" marginTop="0.75rem" marginBottom="1.5rem">
       Checkout the most effective exercises
     </Typography>
-    <Button variant="contained" color="error">
+    <Button href="#exercises" variant="contained" color="error">
       Explore Exercises
     </Button>
+    <Typography fontSize="16rem" sx={{ opacity: 0.1, display: { lg: 'block', xs: 'none' } }} fontWeight={600} color="#ff2625">
+      Exercices
+    </Typography>
+    <img src={HeroBanner} alt="website banner" className="hero-banner-img" />
   </Box>
 );
 
