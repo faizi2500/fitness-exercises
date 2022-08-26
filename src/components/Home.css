@@ -1,0 +1,7 @@
+.hero-banner-img {
+  position: absolute;
+  right: 10rem;
+  width: 76vh;
+  object-fit: cover;
+  top: 0;
+}
