@@ -8,7 +8,6 @@ const Navbar = () => (
       direction="row"
       justifyContent="space-between"
       alignItems="center"
-      height="50%"
       sx={{ width: '40%', height: '70px' }}
       px="2rem"
       pt="0.5em"
