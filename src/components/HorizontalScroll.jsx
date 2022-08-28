@@ -5,7 +5,7 @@ import { Typography } from '@mui/material';
 import BodyPart from './BodyPart';
 import rightArrow from '../assets/icons/right-arrow.png';
 import leftArrow from '../assets/icons/left-arrow.png';
-import usePreventBodyScroll from './usePreventBodyScroll';
+import './hidescrollbar.css';
 
 const Arrows = () => (
   <div
@@ -27,13 +27,10 @@ function LeftArrow() {
 
   return (
     <Typography
-      // height="300px"
       fontSize="40px"
       marginRight="5rem"
       sx={{ cursor: 'pointer' }}
-      // display="flex"
-      // alignItems="center"
-      // justifyContent="center"
+      marginTop="8.5%"
       onClick={() => scrollPrev()}
     >
       <img src={leftArrow} alt="left arrow" />
@@ -46,13 +43,10 @@ function RightArrow() {
 
   return (
     <Typography
-      height="300px"
       marginLeft="4rem"
       fontSize="40px"
+      marginTop="8.5%"
       sx={{ cursor: 'pointer' }}
-      // display="flex"
-      // alignItems="center"
-      // justifyContent="center"
       onClick={() => scrollNext()}
     >
       <img src={rightArrow} alt="right arrow" />
@@ -60,23 +54,26 @@ function RightArrow() {
   );
 }
 
-const HorizontalScroll = ({ data }) => {
-  console.log('object', data[0]);
-  return (
-    <ScrollMenu
-      Footer={Arrows}
-    >
-      {data.map((each) => (
-        <>
-          <BodyPart part={each} />
-        </>
-      ))}
-    </ScrollMenu>
-  );
-};
+const HorizontalScroll = ({ data, bodyPartSelected, setBodyPartSelected }) => (
+  <ScrollMenu
+    Footer={Arrows}
+  >
+    {data.map((each) => (
+      <>
+        <BodyPart
+          part={each}
+          bodyPartSelected={bodyPartSelected}
+          setBodyPartSelected={setBodyPartSelected}
+        />
+      </>
+    ))}
+  </ScrollMenu>
+);
 
 HorizontalScroll.propTypes = {
   data: PropTypes.func.isRequired,
+  bodyPartSelected: PropTypes.string.isRequired,
+  setBodyPartSelected: PropTypes.func.isRequired,
 };
 
 export default HorizontalScroll;

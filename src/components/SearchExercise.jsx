@@ -6,21 +6,21 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import SearchIcon from '@mui/icons-material/Search';
 import { fetchedData, options } from './fetchData';
 import HorizontalScroll from './HorizontalScroll';
 
-const SearchExercise = () => {
+const SearchExercise = ({ bodyPartSelected, setBodyPartSelected, setExercises }) => {
   const [searchText, setSearchText] = useState('');
-  const [searchedData, setSearchedData] = useState([]);
+
   const [bodyParts, setBodyParts] = useState([]);
 
   useEffect(() => {
     const fetchBodyParts = async () => {
       fetch('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', options)
         .then((response) => response.json())
-        .then((response) => setBodyParts(['all', ...response]))
-        .catch((err) => console.error(err));
+        .then((response) => setBodyParts(['all', ...response]));
     };
     fetchBodyParts();
   }, []);
@@ -43,12 +43,9 @@ const SearchExercise = () => {
           || each.name.toLowerCase().includes(searchText),
       );
       setSearchText('');
-      setSearchedData(filteredData);
+      setExercises(filteredData);
     }
   };
-
-  console.log(bodyParts);
-  console.log(searchedData);
 
   return (
     <>
@@ -70,9 +67,19 @@ const SearchExercise = () => {
           </Button>
         </Box>
       </Stack>
-      <HorizontalScroll data={bodyParts} />
+      <HorizontalScroll
+        data={bodyParts}
+        bodyPartSelected={bodyPartSelected}
+        setBodyPartSelected={setBodyPartSelected}
+      />
     </>
   );
+};
+
+SearchExercise.propTypes = {
+  bodyPartSelected: PropTypes.string.isRequired,
+  setBodyPartSelected: PropTypes.func.isRequired,
+  setExercises: PropTypes.func.isRequired,
 };
 
 export default SearchExercise;
